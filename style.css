@@ -15,7 +15,7 @@
 
 body{
     font-family: "Oswald2";
-    background: url(./Assets/Img/fond.jpg) center/cover;
+    background: url(./fond.jpg) center/cover;
     /* VH= 100% de la taille de l'écran - voir les marges plus tard pour comprendre le fitting*/
     min-height: 100vh;
 }
