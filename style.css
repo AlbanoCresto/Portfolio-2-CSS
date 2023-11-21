@@ -1,0 +1,211 @@
+ /* Import de police toujours tout en haut */
+  @import url('https://fonts.googleapis.com/css2?family=Agbalumo&family=Oswald&display=swap');
+
+@font-face {
+    font-family: "Oswald2";
+    src: url(./Assets/Fonts/Oswald-VariableFont_wght.ttf);
+}
+
+/* L'étoile donne du style à tous les éléments */
+*{
+    margin: 0;
+    padding: 0;
+    /* dans le bouton all * on peut se mettre un border solid red dès le début pour travailler et mieux visualier ses box */
+}
+
+body{
+    font-family: "Oswald2";
+    background: url(./Assets/Img/fond.jpg) center/cover;
+    /* VH= 100% de la taille de l'écran - voir les marges plus tard pour comprendre le fitting*/
+    min-height: 100vh;
+}
+
+ h1{
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    text-align: center;
+    /* Les tailles de police doivent être en REM - 1 REM = 16px */
+    font-size: 2.5rem;
+    text-shadow:4px -1px 9px  #000000ab;
+    color: purple;
+    text-decoration: underline;
+    /* Mettre la police sans-serif permet que si google est broke, la police sans serif s'affiche au lieu de la oswald */
+    font-family: 'Agbalumo', sans-serif;
+}
+
+main{
+    min-height: 500px;
+    width: 80%;
+    background: rgba(224, 223, 223, 0.651);
+    /* centrer une boîte - si on met que deux valeurs : la première veut dire haut et bas et la deuxième veut dire gauche et droite*/
+    margin: 0 auto;
+    border: 2px solid rgba(144, 112, 241, 0.902);
+    /* si on met 1 valeur = pour les 4 border radius, si on fait chaque bord c'est dans le sens des aiguilles d'une montre*/
+    border-radius: 5px;
+    box-shadow:rgb(1, 0, 0) 0px 20px 20px 3px;
+    padding-left: 50px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+h2{
+    margin: 0;
+}
+
+.flexbox, 
+.grid,
+.absolute{
+    border: 2px solid black;
+    border-radius: 15px;
+    height: 30%;
+    padding: 10px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-height: 240px;
+    min-width: 100%;
+    min-height: 240px;
+}
+
+/* Flexbox sert à répartir équitablement des éléments sur la page */
+/* .flexbox li permet de choisir les li qui ne sont que dans la div flexbox */
+
+.flexbox ul{
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.flexbox li{
+    list-style: none;
+    height: 160px;
+    width: 300px;
+    margin: 10px;
+    background-color: turquoise;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 30% 70%;
+    height: 200px;
+}
+
+.grid, img{
+    width: 80%;
+    margin: 10px;
+    border-radius: 15px;
+    display: block;
+}
+
+form{
+    /* On crée la grid avec le display */
+    display: grid;
+    /* on explique les colonnes */
+    grid-template-columns: lfr lfr;
+    /* on explique les lignes*/
+    grid-template-rows: lfr lfr lfr;
+    /* on dessine la disposition dans les lignes et les colonnes */
+    grid-template-areas: 
+    "i1 i2"
+    "ta ta"
+    "vi bt";
+    margin: auto;
+    border-radius: 15px;
+}
+
+input, textarea{
+    margin: 5px;
+    border: 1px solid black;
+    padding: 10px;
+    font-size: 1.3rem;
+    font-family: "oswald2";
+    border-radius: 5px;
+}
+
+/* on explique que la grid area de textarea c'est ta dans le dessin */
+textarea{
+    grid-area: ta;
+    height: 35px;
+    resize: none;
+}
+
+/* le # permet de cibler précisémment un ID */
+#send{
+    grid-area: bt;
+    cursor: pointer;
+    background-color: turquoise;
+    transition: 1s;
+}
+
+/* le hover permet d'ajouter un style au survol de la souris */
+#send:hover{
+    background-color: darkturquoise;
+    color: blue;
+}
+
+/* l'élément enfant en absolute est contenu dans les frontières de son parent, puisqu'on le met en relative */
+/* sans élément en relative, le absolute est contenu dans les frontières du body */
+.absolute{
+    position: relative;
+}
+
+/* ABSOLUTE */
+#circle1{
+    height: 80px;
+    width: 80px;
+    background: turquoise;
+    position: absolute;
+    border-radius: 150px;
+    top: -20px;
+    right: -20px;
+}
+
+#circle2{
+    height: 40px;
+    width: 40px;
+    background: turquoise;
+    position: absolute;
+    border-radius: 150px;
+    left: 50%;
+    /* transform translate X permet de changer l'axe X de référence et donc de réellement centrer le cercle avec de vraies valeurs de centrage */
+    transform: translateX(-50%);
+}
+
+/* responsive : permet d'adapter ses éléments en fonction du nombre de pixels et d'adapter son contenu à l'écran de l'utilisateur */
+/* max-width max de pixels qui prennent en compte ces réglages -> en gros en dessous de 800px, l'image va faire -> */
+@media screen and (max-width: 800px){
+    .grid-container{
+        display:block;
+    }
+}
+
+@media screen and (max-width: 550px){
+
+    .flexbox ul{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    form{
+        grid-template-columns: lfr;
+        grid-template-rows: lfr;
+        grid-template-areas: 
+        "i1"
+        "i2"
+        "ta"
+        "bt";
+    }
+
+    input, textarea{
+        font-size: 0.8rem;
+    }
+}
+
+/* écrire une font en VH permet d'avoir un pourcentage de la hauteur du screen */
+/* écrire une font en VW permet d'avoir un pourcentage de la largeur du screen */
